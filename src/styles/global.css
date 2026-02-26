@@ -1,0 +1,133 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: #101010;
+  background: #fff;
+}
+
+* { box-sizing: border-box; }
+body, html, #root { margin: 0; min-height: 100%; }
+
+main { position: relative; background: white; overflow-x: hidden; }
+.canvas-bg { position: fixed !important; inset: 0; z-index: 0; pointer-events: none; }
+.scroll-content { position: relative; z-index: 2; }
+
+.panel {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  padding: 8vw;
+}
+
+.headline {
+  font-size: clamp(3rem, 9vw, 10rem);
+  max-width: 12ch;
+  margin: 0;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+}
+
+.subhead { font-size: clamp(1.5rem, 4vw, 4rem); margin-top: 1rem; }
+
+.panel--image,
+.panel--recompose {
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 4vw;
+}
+
+.image-wrap {
+  width: min(75vw, 1080px);
+  position: relative;
+}
+
+.image-card {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.08);
+}
+
+.subject-pop {
+  position: absolute;
+  right: 10%;
+  bottom: -2%;
+  width: clamp(120px, 24%, 230px);
+  filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.14));
+}
+
+.image-wrap--offset { transform: translateX(8vw) scale(0.9); }
+.subject-pop--shift { left: 14%; right: auto; }
+.side-copy { font-size: clamp(1.2rem, 2.7vw, 3rem); font-weight: 700; }
+.side-copy--alt { justify-self: start; }
+
+.floating-cta {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.cta-button {
+  border: none;
+  border-radius: 999px;
+  background: #121212;
+  color: white;
+  padding: 14px 26px;
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 260px;
+}
+
+.cta-button:disabled { opacity: 0.5; }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 8;
+  display: grid;
+  place-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 28px;
+  border-radius: 14px;
+  display: grid;
+  gap: 10px;
+  width: min(520px, 90vw);
+}
+
+.modal input { padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; }
+.upload-box {
+  position: relative;
+  z-index: 4;
+  margin: 0 auto 8vh;
+  width: min(700px, 90vw);
+  display: grid;
+  gap: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+  .panel--image,
+  .panel--recompose {
+    grid-template-columns: 1fr;
+  }
+
+  .image-wrap,
+  .image-wrap--offset {
+    width: min(90vw, 720px);
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas-bg { display: none; }
+  .headline { letter-spacing: 0; }
+}
