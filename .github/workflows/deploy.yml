@@ -19,10 +19,8 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm install
+      - run: npm ci
       - run: npm run build
-        env:
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
       - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
